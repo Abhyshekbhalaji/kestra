@@ -58,6 +58,12 @@ dependencies {
         api("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
         api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
         api("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
+
+        // http5 client
+        api("org.apache.httpcomponents.client5:httpclient5:5.5")
+        api("org.apache.httpcomponents.core5:httpcore5:5.3.5")
+        api("org.apache.httpcomponents.core5:httpcore5-h2:5.3.5")
+
         api("com.fasterxml.uuid:java-uuid-generator:$jugVersion")
         // issue with the Docker lib having a too old version for the k8s extension
         api("org.apache.commons:commons-compress:1.28.0")
