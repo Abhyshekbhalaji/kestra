@@ -1,6 +1,6 @@
 <template>
     <div class="multi-panel-editor-wrapper">
-        <MultiPanelEditorTabs :class="{playgroundMode}" :tabs="EDITOR_ELEMENTS" @update:tabs="setTabValue" :open-tabs="openTabs">
+        <MultiPanelEditorTabs :class="{playgroundMode}" :tabs="EDITOR_ELEMENTS" @update:tabs="setTabValue" :openTabs="openTabs">
             <EditorButtonsWrapper />
         </MultiPanelEditorTabs>
         <div class="editor-wrapper">

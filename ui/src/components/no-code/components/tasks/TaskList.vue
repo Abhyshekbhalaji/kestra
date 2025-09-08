@@ -4,7 +4,7 @@
             :title="root"
             :elements="items"
             :section
-            :block-schema-path="[blockSchemaPath, 'properties', root, 'items'].join('/')"
+            :blockSchemaPath="[blockSchemaPath, 'properties', root, 'items'].join('/')"
             @remove="removeItem"
             @reorder="(yaml) => flowStore.flowYaml = yaml"
         />

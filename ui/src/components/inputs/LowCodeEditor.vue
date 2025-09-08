@@ -3,20 +3,20 @@
         <slot name="top-bar" />
         <Topology
             :id="vueflowId"
-            :is-horizontal="isHorizontal"
-            :is-read-only="isReadOnly"
-            :is-allowed-edit="isAllowedEdit"
+            :isHorizontal="isHorizontal"
+            :isReadOnly="isReadOnly"
+            :isAllowedEdit="isAllowedEdit"
             :source="source"
-            :toggle-orientation-button="toggleOrientationButton"
-            :flow-graph="playgroundStore.enabled ? (executionsStore.flowGraph ?? props.flowGraph) : props.flowGraph"
-            :flow-id="flowId"
+            :toggleOrientationButton="toggleOrientationButton"
+            :flowGraph="playgroundStore.enabled ? (executionsStore.flowGraph ?? props.flowGraph) : props.flowGraph"
+            :flowId="flowId"
             :namespace="namespace"
-            :expanded-subflows="props.expandedSubflows"
+            :expandedSubflows="props.expandedSubflows"
             :icons="pluginsStore.icons"
             :execution="executionsStore.execution"
-            :subflows-executions="executionsStore.subflowsExecutions"
-            :playground-enabled="playgroundStore.enabled"
-            :playground-ready-to-start="playgroundStore.readyToStart"
+            :subflowsExecutions="executionsStore.subflowsExecutions"
+            :playgroundEnabled="playgroundStore.enabled"
+            :playgroundReadyToStart="playgroundStore.readyToStart"
             @toggle-orientation="toggleOrientation"
             @edit="onEditTask"
             @delete="onDelete"
@@ -39,14 +39,14 @@
             <div v-if="isShowLogsOpen">
                 <Collapse>
                     <el-form-item>
-                        <search-field
+                        <SearchField
                             :router="false"
                             @search="onSearch"
                             class="me-2"
                         />
                     </el-form-item>
                     <el-form-item>
-                        <log-level-selector
+                        <LogLevelSelector
                             :value="logLevel"
                             @update:model-value="onLevelChange"
                         />
@@ -55,10 +55,10 @@
                 <TaskRunDetails
                     v-for="taskRun in selectedTask.taskRuns"
                     :key="taskRun.id"
-                    :target-execution-id="selectedTask.execution?.id"
-                    :task-run-id="taskRun.id"
+                    :targetExecutionId="selectedTask.execution?.id"
+                    :taskRunId="taskRun.id"
                     :filter="logFilter"
-                    :exclude-metas="[
+                    :excludeMetas="[
                         'namespace',
                         'flowId',
                         'taskId',
@@ -75,11 +75,11 @@
             </div>
             <div v-if="isShowConditionOpen">
                 <Editor
-                    :read-only="true"
+                    :readOnly="true"
                     :input="true"
-                    :full-height="false"
+                    :fullHeight="false"
                     :navbar="false"
-                    :model-value="selectedTask.runIf"
+                    :modelValue="selectedTask.runIf"
                     lang="yaml"
                     class="mt-3"
                 />

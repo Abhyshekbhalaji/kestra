@@ -5,7 +5,7 @@
                 v-if="creatingTask || editingTask"
             />
 
-            <el-form v-else label-position="top">
+            <el-form v-else labelPosition="top">
                 <Wrapper :key="v.fieldKey" v-for="(v) in fieldsFromSchemaTop" :merge="shouldMerge(v.schema)" :transparent="v.fieldKey === 'inputs'">
                     <template #tasks>
                         <TaskObjectField

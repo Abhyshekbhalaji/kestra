@@ -2,8 +2,8 @@
     <NamespaceSelect
         data-type="flow"
         :value="modelValue"
-        :read-only="!isCreating"
-        allow-create
+        :readOnly="!isCreating"
+        allowCreate
         @update:model-value="onInput"
     />
 </template>

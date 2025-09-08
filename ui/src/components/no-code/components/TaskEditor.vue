@@ -1,8 +1,8 @@
 <template>
     <div v-if="playgroundStore.enabled && isTask && taskObject?.id" class="flow-playground">
-        <PlaygroundRunTaskButton :task-id="taskObject?.id" />
+        <PlaygroundRunTaskButton :taskId="taskObject?.id" />
     </div>
-    <el-form v-if="isTaskDefinitionBasedOnType" label-position="top">
+    <el-form v-if="isTaskDefinitionBasedOnType" labelPosition="top">
         <el-form-item>
             <template #label>
                 <div class="type-div">
@@ -12,7 +12,7 @@
             </template>
             <PluginSelect
                 v-model="selectedTaskType"
-                :block-schema-path
+                :blockSchemaPath
                 @update:model-value="onTaskTypeSelect"
             />
         </el-form-item>
@@ -22,7 +22,7 @@
             v-loading="isLoading"
             v-if="(selectedTaskType || !isTaskDefinitionBasedOnType) && schemaProp"
             name="root"
-            :model-value="taskObject"
+            :modelValue="taskObject"
             @update:model-value="onTaskInput"
             :schema="schemaProp"
             :properties="properties"

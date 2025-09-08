@@ -129,8 +129,8 @@
                     <component
                         :key="panel.activeTab.value"
                         :is="panel.activeTab.component"
-                        :panel-index="panelIndex"
-                        :tab-index="panel.tabs.findIndex(t => t.value === panel.activeTab.value)"
+                        :panelIndex="panelIndex"
+                        :tabIndex="panel.tabs.findIndex(t => t.value === panel.activeTab.value)"
                     />
                 </KeepAlive>
                 <div
