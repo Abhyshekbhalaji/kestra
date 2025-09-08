@@ -173,7 +173,7 @@ do
   if [[ "$PLUGIN" == "plugin-transform" ]] && [[ "$GIT_BRANCH" == "master" ]]; then # quickfix
     git checkout main;
   else
-    git checkout "$GIT_BRANCH";
+    git checkout "$GIT_BRANCH" || git checkout -b "$GIT_BRANCH";
   fi
 
   CURRENT_BRANCH=$(git branch --show-current);
