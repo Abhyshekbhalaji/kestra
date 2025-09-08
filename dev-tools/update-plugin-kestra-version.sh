@@ -182,15 +182,15 @@ do
   # Update the kestraVersion property
   sed -i "s/^kestraVersion=.*/kestraVersion=${VERSION}/" ./gradle.properties
   # Display diff
-  git diff --exit-code --unified=0 ./gradle.properties | grep -E '^\+|^-' | grep -v -E '^\+\+\+|^---'
+  git diff --exit-code --unified=0 ./gradle.properties | grep -E '^\+|^-' | grep -v -E '^\+\+\+|^---' || echo "No changes detected in gradle.properties";
 
   if [[ "$DRY_RUN" == false ]]; then
     if [[ "$AUTO_YES" == false ]]; then
       askToContinue
     fi
     git add ./gradle.properties
-    git commit -m"chore(deps): update kestraVersion to ${VERSION}."
-    git push
+    git commit -m"chore(deps): update kestraVersion to ${VERSION}." || true
+    git push --set-upstream origin $GIT_BRANCH || true
   else
     echo "Skip git commit/push [DRY_RUN=true]";
   fi
