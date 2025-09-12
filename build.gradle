@@ -168,8 +168,9 @@ allprojects {
 /**********************************************************************************************************************\
  * Test
  **********************************************************************************************************************/
-subprojects {
-    if (it.name != 'platform' && it.name != 'jmh-benchmarks') {
+subprojects {subProj ->
+
+    if (subProj.name != 'platform' && subProj.name != 'jmh-benchmarks') {
         apply plugin: "com.adarshr.test-logger"
 
         java {
@@ -229,6 +230,15 @@ subprojects {
             environment 'SECRET_PASSWORD', "cGFzc3dvcmQ="
             environment 'ENV_TEST1', "true"
             environment 'ENV_TEST2', "Pass by env"
+
+
+            if (subProj.name == 'core') {
+                // JUnit 5 parallel settings
+                systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
+                systemProperty 'junit.jupiter.execution.parallel.mode.default', 'concurrent'
+                systemProperty 'junit.jupiter.execution.parallel.mode.classes.default', 'same_thread'
+                systemProperty 'junit.jupiter.execution.parallel.config.strategy', 'dynamic'
+            }
         }
 
         testlogger {
