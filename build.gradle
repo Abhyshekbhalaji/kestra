@@ -207,6 +207,13 @@ subprojects {
 
         test {
             useJUnitPlatform()
+            reports {
+                junitXml.required = true
+                junitXml.outputPerTestCase = true
+                junitXml.mergeReruns = true
+                junitXml.includeSystemErrLog = true;
+                junitXml.outputLocation = layout.buildDirectory.dir("test-results/junit")
+            }
 
             // set Xmx for test workers
             maxHeapSize = '4g'
