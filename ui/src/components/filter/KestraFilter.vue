@@ -441,7 +441,7 @@
         if (initialRouteName.value === undefined) {
             initialRouteName.value = newVal;
         }
-    })
+    }, {immediate: true})
 
     const updateQuery = () => {
         const newQuery = {
