@@ -412,6 +412,7 @@
     },
     "back_to_dashboard": "Back to dashboard",
     "copy logs": "Copy logs",
+    "fix_with_ai": "Fix with AI",
     "download logs": "Download logs",
     "delete logs": "Delete logs",
     "delete_all_logs": "Are you sure you want to delete all logs?",
