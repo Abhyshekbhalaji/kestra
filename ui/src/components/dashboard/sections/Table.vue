@@ -139,3 +139,9 @@
         refresh();
     }, {deep: true, immediate: true});
 </script>
+
+<style lang="scss">
+section#table .el-scrollbar__thumb {
+    background-color: var(--ks-button-background-primary) !important;
+}
+</style>
