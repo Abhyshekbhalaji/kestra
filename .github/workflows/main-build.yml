@@ -80,8 +80,10 @@ jobs:
           event-type: "oss-updated"
 
       # Slack
-      - name: Slack - Notification
+      - run: echo "mark job as failure to forward error to Slack action" && exit 1
         if: ${{ contains(needs.*.result, 'failure') }}
+      - name: Slack - Notification
+        if: ${{ always() && contains(needs.*.result, 'failure') }}
         uses: kestra-io/actions/composite/slack-status@main
         with:
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
