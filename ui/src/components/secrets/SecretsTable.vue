@@ -285,7 +285,7 @@
                 }
             },
             hasData(newValue, oldValue) {
-                if (oldValue === undefined) {
+                if (oldValue !== newValue) {
                     this.$emit("hasData", newValue);
                 }
             }
@@ -362,9 +362,7 @@
                     }));
 
                     this.$emit("update:isSecretReadOnly", secretsResponse.readOnly ?? false);
-                    if (secretsResponse.results?.length == 0) {
-                        this.hasData = false;
-                    }
+                    this.hasData = (secretsResponse.results?.length ?? 0) !== 0
 
                     this.areNamespaceSecretsReadOnly = secretsResponse.readOnly ?? false;
                     this.secrets = secretsResponse.results;
