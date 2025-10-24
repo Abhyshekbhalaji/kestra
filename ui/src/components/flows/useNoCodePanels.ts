@@ -269,13 +269,15 @@ export function useNoCodePanels(component: any, panels: Ref<Panel[]>, openTabs: 
         opener: { panelIndex: number, tabIndex: number },
         parentPath: string,
         blockSchemaPath: string,
-        refPath?: number
+        refPath?: number,
+        options={}
     ) {
         const tab = getTabFromNoCodeTab(component, {
             action: "edit",
             parentPath,
             blockSchemaPath,
             refPath,
+            ...options
         }, t, handlers, flowStore.flowYaml ?? "")
 
         trackTabOpen(tab);

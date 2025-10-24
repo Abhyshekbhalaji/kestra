@@ -78,11 +78,11 @@ export function useTopologyPanels(
             // if the fieldName is undefined, editing a task directly in an array
             // we need the parent path and the refPath
             const parentPath = path.slice(0, - (refPath.toString().length + 2)); // remove the [refPath] part
-            openEditTaskTab(target, parentPath, blockSchemaPath, refPath);
+            openEditTaskTab(target, parentPath, blockSchemaPath, refPath,{ triggeredBy: "topology" });
         }else if (action === "edit" && fieldName !== undefined) {
             // if the fieldName is defined, editing a task as a subfield like a dag
             // we only need the path, the rest is part of the path
-            openEditTaskTab(target, path, blockSchemaPath);
+            openEditTaskTab(target, path, blockSchemaPath,undefined,{ triggeredBy: "topology" });
         }
         topologyClick.value = undefined; // reset the click
     });

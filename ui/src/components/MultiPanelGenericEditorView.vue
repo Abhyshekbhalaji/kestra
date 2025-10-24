@@ -1,6 +1,6 @@
 <template>
     <div class="main-editor">
-        <MultiPanelEditorTabs :tabs="editorElements" @update:tabs="setTabValue" :openTabs="openTabs">
+        <MultiPanelEditorTabs :tabs="editorElements" @update:tabs="setTabValue" @openEditorInNewPanel="handleOpenEditorInNewPanel":openTabs="openTabs">
             <slot name="actions" />
         </MultiPanelEditorTabs>
         <div class="editor-wrapper">
@@ -21,7 +21,7 @@
     import {computed, useSlots} from "vue";
     import MultiPanelEditorTabs from "./MultiPanelEditorTabs.vue";
     import MultiPanelTabs from "./MultiPanelTabs.vue";
-    import {EditorElement, Panel} from "../utils/multiPanelTypes";
+    import {EditorElement, Panel, TabLive} from "../utils/multiPanelTypes";
     import {useStoredPanels} from "../composables/useStoredPanels";
 
     const props = withDefaults(defineProps<{
@@ -62,6 +62,16 @@
         }
     };
 
+    function handleOpenEditorInNewPanel(tab:TabLive){
+        const newPanel:Panel<TabLive> ={
+            tabs:[tab],
+            activeTab:tab,
+            size:panels.value.length? panels.value.reduce((acc:number,panel:Panel<TabLive>)=> acc+panel.size,0)/panels.value.length:1,
+        }
+        panels.value.push(newPanel);
+
+    }
+
     const panels = useStoredPanels(props.saveKey, props.editorElements, props.defaultActiveTabs, props.preSerializePanels);
 
     const emit = defineEmits<{
@@ -73,6 +83,15 @@
         if(emit("set-tab-value", tabValue) === false) {
             return;
         }
+
+        const tab = panels.value
+    .flatMap((panel:Panel<TabLive>) => panel.tabs)
+    .find((tab:TabLive) => tab.uid === tabValue);
+
+        if (tab && tab.triggeredBy === "topology") {
+              handleOpenEditorInNewPanel(tab);
+                return;
+                }
 
         if(openTabs.value.includes(tabValue)){
             onRemoveTab(tabValue);
