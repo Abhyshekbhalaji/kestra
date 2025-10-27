@@ -88,7 +88,7 @@
     .flatMap((panel:Panel<TabLive>) => panel.tabs)
     .find((tab:TabLive) => tab.uid === tabValue);
 
-        if (tab && tab.triggeredBy === "topology") {
+        if (tab && tab.panelTarget === "new") {
               handleOpenEditorInNewPanel(tab);
                 return;
                 }
@@ -107,6 +107,7 @@
             }
         }
     }
+
 
 
 

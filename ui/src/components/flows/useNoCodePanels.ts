@@ -270,7 +270,7 @@ export function useNoCodePanels(component: any, panels: Ref<Panel[]>, openTabs: 
         parentPath: string,
         blockSchemaPath: string,
         refPath?: number,
-        options={}
+        options:{panelTarget?:'self' | 'new'}={}
     ) {
         const tab = getTabFromNoCodeTab(component, {
             action: "edit",

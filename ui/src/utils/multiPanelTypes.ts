@@ -11,7 +11,7 @@ export interface TabLive extends Tab {
     potential?: boolean
     fromPanel?: boolean
     dirty?: boolean,
-    triggeredBy?: string;
+    panelTarget:'self' |'new';
 }
 
 export interface Panel<T extends Tab = Tab> {
